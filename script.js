@@ -20,19 +20,19 @@ async function getAPI(url){
 
 async function getLocation (){
 
-        const url = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}`
-        const data = await getAPI(url);
-        let localisation = document.getElementById("localisation");
-        let previousLocalisation = localisation.innerText;
-        let newLocalisation = data.countryName;
-        if(!previousLocalisation.includes(newLocalisation)){
-            localisation.textContent = newLocalisation;
-            let flag = document.createElement("img");
-            flag.innerHTML=`<span><img src="https://flagsapi.com/${data.countryCode}/flat/16.png"></span>`;
-            localisation.append(flag);
-        }else{
-            localisation.textContent = previousLocalisation;
-        }
+    const apiKey = "699843bf2719b391536714jiz51933c";
+    const url = `https://geocode.maps.co/reverse?lat=${latitude}&lon=${longitude}&api_key=${apiKey}`
+    const data = await getAPI(url);
+    let localisation = document.getElementById("localisation");
+    let previousLocalisation = localisation.innerText;
+    
+    let newLocalisation = data.address.country;
+    if(!previousLocalisation.includes(newLocalisation)){
+        localisation.textContent = newLocalisation;
+    }else{
+        localisation.textContent = previousLocalisation;
+            }
+
 
 
 }
